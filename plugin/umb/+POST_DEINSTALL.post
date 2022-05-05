@@ -1,0 +1,2 @@
+rm -f /boot/modules/if_umb.ko
+kldxref /boot/modules

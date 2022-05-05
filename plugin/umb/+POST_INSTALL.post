@@ -1,0 +1,2 @@
+install -T release -o root -g wheel -m 555  -U /usr/local/boot/modules/if_umb.ko /boot/modules/
+kldxref /boot/modules

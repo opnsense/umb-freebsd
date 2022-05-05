@@ -1,0 +1,37 @@
+#!/bin/sh
+
+
+
+#variables
+PREFIX="/usr/local"
+PROGNAME="umbctl-gateway"
+SBINDIR="$PREFIX/sbin"
+#executables
+PLUGINCTL="pluginctl"
+RM="rm -f"
+UMBCTL="$SBINDIR/umbctl"
+
+
+#functions
+#usage
+_usage()
+{
+	echo "Usage: $PROGNAME interface" 1>&2
+	return 1
+}
+
+
+#main
+if [ $# -ne 1 ]; then
+	_usage
+	exit $?
+fi
+ifname="$1"
+filename="/tmp/${ifname}_router"
+gateway=$($UMBCTL -g "$ifname")
+if [ $? -eq 0 ]; then
+	echo "$gateway" > "$filename"
+	$PLUGINCTL monitor
+elif [ -f "$filename" ]; then
+	$RM -- "$filename"
+fi

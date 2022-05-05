@@ -1,0 +1,10 @@
+This plug-in adds support for LTE USB modems in OPNsense:
+
+- kernel module for umb(4)
+- configuration tool umbctl(8)
+- helper script for the gateway monitors
+
+This still requires a patch to the core repository, as well as the
+configuration of a cron job in order to work as expected.
+
+WWW: https://www.defora.net/
